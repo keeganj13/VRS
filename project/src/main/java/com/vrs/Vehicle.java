@@ -61,4 +61,8 @@ public class Vehicle {
     public void startEngine() {
         System.out.println("Vroom Vroom");
     }
+
+    public void honk() {
+        System.out.println("Honk honk!");
+    }
 }
