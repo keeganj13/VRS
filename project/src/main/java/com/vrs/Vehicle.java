@@ -3,6 +3,7 @@ package com.vrs;
 public class Vehicle {
     String make;
     String model;
+    Double MPG;
     int year;
     String color;
     String engineType;
