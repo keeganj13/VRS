@@ -5,9 +5,9 @@ public class Customer {
     private Date DOB;
     private Address address;
 
-    public Customer(String name, Date bday, Address a) {
+    public Customer(String name, Date bday, Address add) {
         Name = name;
         DOB = bday;
-        address = a;
+        address = add;
     }
 }

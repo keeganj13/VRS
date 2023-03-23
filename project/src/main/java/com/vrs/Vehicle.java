@@ -7,11 +7,11 @@ public class Vehicle {
     String color;
     String engineType;
 
-    public Vehicle(String make1, String model1, int year1, String color1, String engine) {
-        make = make1;
-        model = model1;
-        year = year1;
-        color = color1;
+    public Vehicle(String make, String model, int year, String color, String engine) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.color = color;
         engineType = engine;
     }
 
