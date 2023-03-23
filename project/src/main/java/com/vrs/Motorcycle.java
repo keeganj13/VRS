@@ -1,4 +1,4 @@
 package com.vrs;
 
-public class Motorcycle {
+public class Motorcycle extends Vehicle {
 }

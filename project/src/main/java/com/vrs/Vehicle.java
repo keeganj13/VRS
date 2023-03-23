@@ -16,6 +16,15 @@ public class Vehicle {
         engineType = engine;
     }
 
+    public Vehicle() {
+        make = "";
+        model = "";
+        MPG = 0.0;
+        year = 0;
+        color = "";
+        engineType = "";
+    }
+
     // getters
     public String getMake() {
         return make;
