@@ -1,5 +1,5 @@
 package com.vrs;
 
-public class Sedan {
+public class Sedan extends Vehicle {
     public int numSeats;
 }
