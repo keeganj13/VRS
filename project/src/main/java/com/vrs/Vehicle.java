@@ -3,26 +3,27 @@ package com.vrs;
 public class Vehicle {
     String make;
     String model;
-    Double MPG;
+    double MPG;
     int year;
     String color;
     String engineType;
 
-    public Vehicle(String make, String model, int year, String color, String engine) {
+    public Vehicle(String make, String model, double mpg, int year, String color, String engine) {
         this.make = make;
         this.model = model;
+        MPG = mpg;
         this.year = year;
         this.color = color;
         engineType = engine;
     }
 
     public Vehicle() {
-        make = "";
-        model = "";
-        MPG = 0.0;
-        year = 0;
-        color = "";
-        engineType = "";
+        make = "Nissan";
+        model = "Altima";
+        MPG = 33.0;
+        year = 2023;
+        color = "Black";
+        engineType = "Gas";
     }
 
     // getters
