@@ -1,14 +1,16 @@
 package com.vrs;
 
+import javax.swing.JFrame;
+
 /**
  * Hello world!
  *
  */
 public class App {
     public static void main(String[] args) {
-        Date test = new Date(10, 9, 2002);
-        System.out.println(test.toString());
-        Address test2 = new Address(40, "Main St", "Fort Wayne", "Indiana");
-        System.out.println(test2.toString());
+        LoginFrame LF = new LoginFrame();
+        LF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        LF.setSize(400, 300);
+        LF.setVisible(true);
     }
 }

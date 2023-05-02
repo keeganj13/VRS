@@ -14,7 +14,7 @@ public class Date {
         if (m > 0 && m < 13) {
             month = m;
         }
-        if (y > 0 && y < 1998) {
+        if (y < 0) {
             year = y;
         }
     }
