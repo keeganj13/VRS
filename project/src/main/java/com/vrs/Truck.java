@@ -9,4 +9,15 @@ public class Truck extends Vehicle {
         this.type = type;
         this.load = load;
     }
+
+    public Truck() {
+        make = "Ford";
+        model = "F-150 XL";
+        MPG = 21;
+        year = 2023;
+        color = "Grey";
+        engineType = "Gas";
+        type = 3;
+        load = 1800;
+    }
 }
