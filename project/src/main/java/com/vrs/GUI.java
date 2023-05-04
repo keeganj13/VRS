@@ -3,6 +3,9 @@ package com.vrs;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class GUI extends JFrame implements ActionListener {
     private JButton button1, button2, button3, button4, button5, button6, button7, button8;
@@ -142,15 +145,25 @@ public class GUI extends JFrame implements ActionListener {
                     String state = stateTextField.getText();
                     String[] dob = dobTextField.getText().split("/");
 
-                    int[] dobNums = new int[3];
-                    for (int i = 0; i < dobNums.length; i++) {
-                        dobNums[i] = Integer.parseInt(dob[i]);
-                    }
-                    Address tempAddress = new Address(houseNum, streetName, city, state);
-                    Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
-                    Customer tempCustomer = new Customer(name, tempDate, tempAddress);
+                    // int[] dobNums = new int[3];
+                    // for (int i = 0; i < dobNums.length; i++) {
+                    // dobNums[i] = Integer.parseInt(dob[i]);
+                    // }
+                    // Address tempAddress = new Address(houseNum, streetName, city, state);
+                    // Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
+                    // Customer tempCustomer = new Customer(name, tempDate, tempAddress);
                     // Add this to mySQL somehow
-                    System.out.println(tempCustomer + " was added to the database.");
+                    try {
+                        File test = new File(".\\VRS\\project\\src\\main\\java\\com\\vrs\\test.txt");
+                        FileWriter myWriter = new FileWriter(test);
+                        myWriter.write(String.format("\n%s\t%d\t%s\t%s\t%s\t%s-%s-%s", name, houseNum, streetName, city,
+                                state, dob[0], dob[1], dob[2]));
+                        myWriter.close();
+                        System.out.println("something");
+                    } catch (IOException E) {
+                        System.out.println("An error occurred.");
+                        E.printStackTrace();
+                    }
 
                     inputWindow.dispose();
                 }
