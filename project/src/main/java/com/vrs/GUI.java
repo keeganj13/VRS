@@ -1,3 +1,5 @@
+package com.vrs;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,7 +10,7 @@ public class GUI extends JFrame implements ActionListener {
     public GUI() {
         // Window name
         setTitle("VRS");
-        setSize(2*690, 420);
+        setSize(2 * 690, 420);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Button names
@@ -48,80 +50,81 @@ public class GUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String buttonName = ((JButton) e.getSource()).getText();
         if (buttonName.equals("Add customer")) {
-            JFrame inputWindow = new JFrame("Add Customer");
+            final JFrame inputWindow = new JFrame("Add Customer");
             JPanel panel = new JPanel(new GridBagLayout());
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.anchor = GridBagConstraints.WEST;
             constraints.insets = new Insets(5, 5, 5, 5);
 
-            //Might be a faster or smaller way to do this with a loop but I like ctrl+c/ctrl+v
-            JLabel nameLabel = new JLabel("Name: ");
+            // Might be a faster or smaller way to do this with a loop but I like
+            // ctrl+c/ctrl+v
+            final JLabel nameLabel = new JLabel("Name: ");
             constraints.gridx = 0;
             constraints.gridy = 0;
             panel.add(nameLabel, constraints);
 
-            JTextField nameTextField = new JTextField(20);
+            final JTextField nameTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 0;
             panel.add(nameTextField, constraints);
 
-            JLabel houseNumLabel = new JLabel("House Number: ");
+            final JLabel houseNumLabel = new JLabel("House Number: ");
             constraints.gridx = 0;
             constraints.gridy = 1;
             panel.add(houseNumLabel, constraints);
 
-            JTextField houseNumTextField = new JTextField(20);
+            final JTextField houseNumTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 1;
             panel.add(houseNumTextField, constraints);
 
-            JLabel streetNameLabel = new JLabel("Street Name: ");
+            final JLabel streetNameLabel = new JLabel("Street Name: ");
             constraints.gridx = 0;
             constraints.gridy = 2;
             panel.add(streetNameLabel, constraints);
 
-            JTextField streetNameTextField = new JTextField(20);
+            final JTextField streetNameTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 2;
             panel.add(streetNameTextField, constraints);
 
-            JLabel cityLabel = new JLabel("City: ");
+            final JLabel cityLabel = new JLabel("City: ");
             constraints.gridx = 0;
             constraints.gridy = 3;
             panel.add(cityLabel, constraints);
 
-            JTextField cityTextField = new JTextField(20);
+            final JTextField cityTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 3;
             panel.add(cityTextField, constraints);
 
-            JLabel stateLabel = new JLabel("State: ");
+            final JLabel stateLabel = new JLabel("State: ");
             constraints.gridx = 0;
             constraints.gridy = 4;
             panel.add(stateLabel, constraints);
 
-            JTextField stateTextField = new JTextField(20);
+            final JTextField stateTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 4;
             panel.add(stateTextField, constraints);
 
-            JLabel dobLabel = new JLabel("Date of Birth [mm/dd/yyyy]: ");
+            final JLabel dobLabel = new JLabel("Date of Birth [mm/dd/yyyy]: ");
             constraints.gridx = 0;
             constraints.gridy = 5;
             panel.add(dobLabel, constraints);
 
-            JTextField dobTextField = new JTextField(20);
+            final JTextField dobTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 5;
             panel.add(dobTextField, constraints);
 
-            JButton submitButton = new JButton("Submit");
+            final JButton submitButton = new JButton("Submit");
             constraints.gridx = 1;
             constraints.gridy = 6;
             panel.add(submitButton, constraints);
 
-            JButton cancelButton = new JButton("Cancel");
+            final JButton cancelButton = new JButton("Cancel");
             constraints.gridx = 0;
             constraints.gridy = 6;
             panel.add(cancelButton, constraints);
@@ -140,14 +143,13 @@ public class GUI extends JFrame implements ActionListener {
                     String[] dob = dobTextField.getText().split("/");
 
                     int[] dobNums = new int[3];
-                    for(int i = 0;i < dobNums.length;i++)
-                    {
+                    for (int i = 0; i < dobNums.length; i++) {
                         dobNums[i] = Integer.parseInt(dob[i]);
                     }
-                    Address tempAddress = new Address(houseNum,streetName,city,state);
+                    Address tempAddress = new Address(houseNum, streetName, city, state);
                     Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
-                    Customer tempCustomer = new Customer(name,tempDate,tempAddress);
-                    //Add this to mySQL somehow
+                    Customer tempCustomer = new Customer(name, tempDate, tempAddress);
+                    // Add this to mySQL somehow
                     System.out.println(tempCustomer + " was added to the database.");
 
                     inputWindow.dispose();
@@ -161,80 +163,81 @@ public class GUI extends JFrame implements ActionListener {
                 }
             });
         } else if (buttonName.equals("Add vehicle")) {
-            JFrame inputWindow = new JFrame("Add Vehicle");
+            final JFrame inputWindow = new JFrame("Add Vehicle");
             JPanel panel = new JPanel(new GridBagLayout());
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.anchor = GridBagConstraints.WEST;
             constraints.insets = new Insets(5, 5, 5, 5);
 
-            //Might be a faster or smaller way to do this with a loop, but I like ctrl+c/ctrl+v
-            JLabel nameLabel = new JLabel("Name: ");
+            // Might be a faster or smaller way to do this with a loop, but I like
+            // ctrl+c/ctrl+v
+            final JLabel nameLabel = new JLabel("Name: ");
             constraints.gridx = 0;
             constraints.gridy = 0;
             panel.add(nameLabel, constraints);
 
-            JTextField nameTextField = new JTextField(20);
+            final JTextField nameTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 0;
             panel.add(nameTextField, constraints);
 
-            JLabel houseNumLabel = new JLabel("House Number: ");
+            final JLabel houseNumLabel = new JLabel("House Number: ");
             constraints.gridx = 0;
             constraints.gridy = 1;
             panel.add(houseNumLabel, constraints);
 
-            JTextField houseNumTextField = new JTextField(20);
+            final JTextField houseNumTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 1;
             panel.add(houseNumTextField, constraints);
 
-            JLabel streetNameLabel = new JLabel("Street Name: ");
+            final JLabel streetNameLabel = new JLabel("Street Name: ");
             constraints.gridx = 0;
             constraints.gridy = 2;
             panel.add(streetNameLabel, constraints);
 
-            JTextField streetNameTextField = new JTextField(20);
+            final JTextField streetNameTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 2;
             panel.add(streetNameTextField, constraints);
 
-            JLabel cityLabel = new JLabel("City: ");
+            final JLabel cityLabel = new JLabel("City: ");
             constraints.gridx = 0;
             constraints.gridy = 3;
             panel.add(cityLabel, constraints);
 
-            JTextField cityTextField = new JTextField(20);
+            final JTextField cityTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 3;
             panel.add(cityTextField, constraints);
 
-            JLabel stateLabel = new JLabel("State: ");
+            final JLabel stateLabel = new JLabel("State: ");
             constraints.gridx = 0;
             constraints.gridy = 4;
             panel.add(stateLabel, constraints);
 
-            JTextField stateTextField = new JTextField(20);
+            final JTextField stateTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 4;
             panel.add(stateTextField, constraints);
 
-            JLabel dobLabel = new JLabel("Date of Birth [mm/dd/yyyy]: ");
+            final JLabel dobLabel = new JLabel("Date of Birth [mm/dd/yyyy]: ");
             constraints.gridx = 0;
             constraints.gridy = 5;
             panel.add(dobLabel, constraints);
 
-            JTextField dobTextField = new JTextField(20);
+            final JTextField dobTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 5;
             panel.add(dobTextField, constraints);
 
-            JButton submitButton = new JButton("Submit");
+            final JButton submitButton = new JButton("Submit");
             constraints.gridx = 1;
             constraints.gridy = 6;
             panel.add(submitButton, constraints);
 
-            JButton cancelButton = new JButton("Cancel");
+            final JButton cancelButton = new JButton("Cancel");
             constraints.gridx = 0;
             constraints.gridy = 6;
             panel.add(cancelButton, constraints);
@@ -253,16 +256,15 @@ public class GUI extends JFrame implements ActionListener {
                     String[] dob = dobTextField.getText().split("/");
 
                     int[] dobNums = new int[3];
-                    for(int i = 0;i < dobNums.length;i++)
-                    {
+                    for (int i = 0; i < dobNums.length; i++) {
                         dobNums[i] = Integer.parseInt(dob[i]);
                     }
-                    Address tempAddress = new Address(houseNum,streetName,city,state);
+                    Address tempAddress = new Address(houseNum, streetName, city, state);
                     Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
-                    Customer tempCustomer = new Customer(name,tempDate,tempAddress);
-                    //Add this to mySQL somehow
+                    Customer tempCustomer = new Customer(name, tempDate, tempAddress);
+                    // Add this to mySQL somehow
                     System.out.println(tempCustomer + "was added to the database.");
-                    //This will only show for console
+                    // This will only show for console
                     inputWindow.dispose();
                 }
             });
@@ -272,23 +274,21 @@ public class GUI extends JFrame implements ActionListener {
                     inputWindow.dispose();
                 }
             });
-        }  else if (buttonName.equals("Rent vehicle")) {
-            //.setText("You clicked button 3");
+        } else if (buttonName.equals("Rent vehicle")) {
+            // .setText("You clicked button 3");
         } else if (buttonName.equals("Return vehicle")) {
-            //messageLabel.setText("You clicked button 4");
+            // messageLabel.setText("You clicked button 4");
         } else if (buttonName.equals("Search for a customer")) {
-            //messageLabel.setText("You clicked button 5");
+            // messageLabel.setText("You clicked button 5");
         } else if (buttonName.equals("Search for a vehicle")) {
-            //messageLabel.setText("You clicked button 6");
+            // messageLabel.setText("You clicked button 6");
         } else if (buttonName.equals("Generate a report for available vehicles")) {
-            //messageLabel.setText("You clicked button 7");
+            // messageLabel.setText("You clicked button 7");
         } else if (buttonName.equals("Generate a report for rented vehicles")) {
-            //messageLabel.setText("You clicked button 8");
+            // messageLabel.setText("You clicked button 8");
         }
     }
 
     public static void main(String[] args) {
-        GUI window = new GUI();
-        window.setVisible(true);
     }
 }
