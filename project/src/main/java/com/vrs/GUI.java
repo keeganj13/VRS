@@ -3,17 +3,14 @@ package com.vrs;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
+import java.util.concurrent.TimeUnit;
 public class GUI extends JFrame implements ActionListener {
     private JButton button1, button2, button3, button4, button5, button6, button7, button8;
 
     public GUI() {
         // Window name
         setTitle("VRS");
-        setSize(2 * 690, 420);
+        setSize(2*690, 420);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Button names
@@ -60,8 +57,7 @@ public class GUI extends JFrame implements ActionListener {
             constraints.anchor = GridBagConstraints.WEST;
             constraints.insets = new Insets(5, 5, 5, 5);
 
-            // Might be a faster or smaller way to do this with a loop but I like
-            // ctrl+c/ctrl+v
+            //Might be a faster or smaller way to do this with a loop but I like ctrl+c/ctrl+v
             final JLabel nameLabel = new JLabel("Name: ");
             constraints.gridx = 0;
             constraints.gridy = 0;
@@ -139,33 +135,50 @@ public class GUI extends JFrame implements ActionListener {
             submitButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String name = nameTextField.getText();
-                    int houseNum = Integer.parseInt(houseNumTextField.getText());
+                    String houseN = houseNumTextField.getText();
                     String streetName = streetNameTextField.getText();
                     String city = cityTextField.getText();
                     String state = stateTextField.getText();
-                    String[] dob = dobTextField.getText().split("/");
+                    String dobString = dobTextField.getText();
+                    String[] checker = new String[6];
+                    checker[0] = name;
+                    checker[1] = houseN;
+                    checker[2] = streetName;
+                    checker[3] = city;
+                    checker[4] = state;
+                    checker[5] = dobString;
 
-                    // int[] dobNums = new int[3];
-                    // for (int i = 0; i < dobNums.length; i++) {
-                    // dobNums[i] = Integer.parseInt(dob[i]);
-                    // }
-                    // Address tempAddress = new Address(houseNum, streetName, city, state);
-                    // Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
-                    // Customer tempCustomer = new Customer(name, tempDate, tempAddress);
-                    // Add this to mySQL somehow
-                    try {
-                        File test = new File(".\\VRS\\project\\src\\main\\java\\com\\vrs\\test.txt");
-                        FileWriter myWriter = new FileWriter(test);
-                        myWriter.write(String.format("\n%s\t%d\t%s\t%s\t%s\t%s-%s-%s", name, houseNum, streetName, city,
-                                state, dob[0], dob[1], dob[2]));
-                        myWriter.close();
-                        System.out.println("something");
-                    } catch (IOException E) {
-                        System.out.println("An error occurred.");
-                        E.printStackTrace();
+                    for(String temp : checker)
+                    {
+                        if (temp.length() == 0)
+                        {
+                            JOptionPane temp1 = new JOptionPane();
+                            temp1.showMessageDialog(null, "Error: Not all of the inputs are filled", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                     }
 
-                    inputWindow.dispose();
+
+                    try {
+                        String[] dobS = dobString.split("/");
+
+                        int houseNum = Integer.parseInt(houseN);
+
+                        int[] dobNums = new int[3];
+                        for (int i = 0; i < dobNums.length; i++) {
+                            dobNums[i] = Integer.parseInt(dobS[i]);
+                        }
+                        Address tempAddress = new Address(houseNum, streetName, city, state);
+                        Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
+                        Customer tempCustomer = new Customer(name, tempDate, tempAddress);
+                        //Add this to mySQL somehow
+                        System.out.println(tempCustomer + " was added to the database.");
+
+                        inputWindow.dispose();
+                    } catch (Exception exception){
+                        JOptionPane temp1 = new JOptionPane();
+                        temp1.showMessageDialog(null, "Error: Invalid input", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             });
 
@@ -176,81 +189,80 @@ public class GUI extends JFrame implements ActionListener {
                 }
             });
         } else if (buttonName.equals("Add vehicle")) {
-            final JFrame inputWindow = new JFrame("Add Vehicle");
+            JFrame inputWindow = new JFrame("Add Vehicle");
             JPanel panel = new JPanel(new GridBagLayout());
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.anchor = GridBagConstraints.WEST;
             constraints.insets = new Insets(5, 5, 5, 5);
 
-            // Might be a faster or smaller way to do this with a loop, but I like
-            // ctrl+c/ctrl+v
-            final JLabel nameLabel = new JLabel("Name: ");
+            //Might be a faster or smaller way to do this with a loop, but I like ctrl+c/ctrl+v
+            JLabel nameLabel = new JLabel("Name: ");
             constraints.gridx = 0;
             constraints.gridy = 0;
             panel.add(nameLabel, constraints);
 
-            final JTextField nameTextField = new JTextField(20);
+            JTextField nameTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 0;
             panel.add(nameTextField, constraints);
 
-            final JLabel houseNumLabel = new JLabel("House Number: ");
+            JLabel houseNumLabel = new JLabel("House Number: ");
             constraints.gridx = 0;
             constraints.gridy = 1;
             panel.add(houseNumLabel, constraints);
 
-            final JTextField houseNumTextField = new JTextField(20);
+            JTextField houseNumTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 1;
             panel.add(houseNumTextField, constraints);
 
-            final JLabel streetNameLabel = new JLabel("Street Name: ");
+            JLabel streetNameLabel = new JLabel("Street Name: ");
             constraints.gridx = 0;
             constraints.gridy = 2;
             panel.add(streetNameLabel, constraints);
 
-            final JTextField streetNameTextField = new JTextField(20);
+            JTextField streetNameTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 2;
             panel.add(streetNameTextField, constraints);
 
-            final JLabel cityLabel = new JLabel("City: ");
+            JLabel cityLabel = new JLabel("City: ");
             constraints.gridx = 0;
             constraints.gridy = 3;
             panel.add(cityLabel, constraints);
 
-            final JTextField cityTextField = new JTextField(20);
+            JTextField cityTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 3;
             panel.add(cityTextField, constraints);
 
-            final JLabel stateLabel = new JLabel("State: ");
+            JLabel stateLabel = new JLabel("State: ");
             constraints.gridx = 0;
             constraints.gridy = 4;
             panel.add(stateLabel, constraints);
 
-            final JTextField stateTextField = new JTextField(20);
+            JTextField stateTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 4;
             panel.add(stateTextField, constraints);
 
-            final JLabel dobLabel = new JLabel("Date of Birth [mm/dd/yyyy]: ");
+            JLabel dobLabel = new JLabel("Date of Birth [mm/dd/yyyy]: ");
             constraints.gridx = 0;
             constraints.gridy = 5;
             panel.add(dobLabel, constraints);
 
-            final JTextField dobTextField = new JTextField(20);
+            JTextField dobTextField = new JTextField(20);
             constraints.gridx = 1;
             constraints.gridy = 5;
             panel.add(dobTextField, constraints);
 
-            final JButton submitButton = new JButton("Submit");
+            JButton submitButton = new JButton("Submit");
             constraints.gridx = 1;
             constraints.gridy = 6;
             panel.add(submitButton, constraints);
 
-            final JButton cancelButton = new JButton("Cancel");
+            JButton cancelButton = new JButton("Cancel");
             constraints.gridx = 0;
             constraints.gridy = 6;
             panel.add(cancelButton, constraints);
@@ -269,15 +281,16 @@ public class GUI extends JFrame implements ActionListener {
                     String[] dob = dobTextField.getText().split("/");
 
                     int[] dobNums = new int[3];
-                    for (int i = 0; i < dobNums.length; i++) {
+                    for(int i = 0;i < dobNums.length;i++)
+                    {
                         dobNums[i] = Integer.parseInt(dob[i]);
                     }
-                    Address tempAddress = new Address(houseNum, streetName, city, state);
+                    Address tempAddress = new Address(houseNum,streetName,city,state);
                     Date tempDate = new Date(dobNums[1], dobNums[0], dobNums[2]);
-                    Customer tempCustomer = new Customer(name, tempDate, tempAddress);
-                    // Add this to mySQL somehow
+                    Customer tempCustomer = new Customer(name,tempDate,tempAddress);
+                    //Add this to mySQL somehow
                     System.out.println(tempCustomer + "was added to the database.");
-                    // This will only show for console
+                    //This will only show for console
                     inputWindow.dispose();
                 }
             });
@@ -287,21 +300,23 @@ public class GUI extends JFrame implements ActionListener {
                     inputWindow.dispose();
                 }
             });
-        } else if (buttonName.equals("Rent vehicle")) {
-            // .setText("You clicked button 3");
+        }  else if (buttonName.equals("Rent vehicle")) {
+            //.setText("You clicked button 3");
         } else if (buttonName.equals("Return vehicle")) {
-            // messageLabel.setText("You clicked button 4");
+            //messageLabel.setText("You clicked button 4");
         } else if (buttonName.equals("Search for a customer")) {
-            // messageLabel.setText("You clicked button 5");
+            //messageLabel.setText("You clicked button 5");
         } else if (buttonName.equals("Search for a vehicle")) {
-            // messageLabel.setText("You clicked button 6");
+            //messageLabel.setText("You clicked button 6");
         } else if (buttonName.equals("Generate a report for available vehicles")) {
-            // messageLabel.setText("You clicked button 7");
+            //messageLabel.setText("You clicked button 7");
         } else if (buttonName.equals("Generate a report for rented vehicles")) {
-            // messageLabel.setText("You clicked button 8");
+            //messageLabel.setText("You clicked button 8");
         }
     }
 
     public static void main(String[] args) {
+        GUI window = new GUI();
+        window.setVisible(true);
     }
 }
