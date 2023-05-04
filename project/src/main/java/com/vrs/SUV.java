@@ -1,5 +1,3 @@
 package com.vrs;
 
-public class SUV extends Vehicle {
-    
-}
+public class SUV extends Vehicle {} 
