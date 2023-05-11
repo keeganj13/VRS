@@ -1,3 +1,5 @@
+package com.vrs
+
 import java.io.*;
 import java.util.ArrayList;
 
