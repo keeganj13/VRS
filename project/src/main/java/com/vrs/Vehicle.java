@@ -1,14 +1,12 @@
 package com.vrs;
 
 public class Vehicle {
-    String make;
-    String model;
+    String make, model, color, engineType;
     double MPG;
     int year;
-    String color;
-    String engineType;
+    boolean rented = false;
 
-    public Vehicle(String make, String model, double mpg, int year, String color, String engine) {
+    public Vehicle(String make, String model, int year, double mpg, String color, String engine) {
         this.make = make;
         this.model = model;
         MPG = mpg;
@@ -68,11 +66,12 @@ public class Vehicle {
         this.engineType = engineType;
     }
 
-    public void startEngine() {
-        System.out.println("Vroom Vroom");
+    public String toString() {
+        String out;
+        out = " Year: " + year + " " + color + " " + make + " " + model + ". MPG: " + MPG;
+        return out;
     }
 
-    public void honk() {
-        System.out.println("Honk honk!");
-    }
+
 }
+
